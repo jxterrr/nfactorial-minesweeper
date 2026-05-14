@@ -37,12 +37,6 @@ npm run dev
 
 Переменные окружения — из `.env.example` → скопируйте в `.env.local` (Supabase нужен для персистентного daily + leaderboard через API).
 
-## Деплой (чтобы получить ссылку для формы)
-
-1. Залейте репозиторий на **GitHub**.
-2. Подключите репозиторий к **Vercel** → Import → те же env, что в `.env.local` для продакшена (без секретов в клиенте: `SUPABASE_SERVICE_ROLE_KEY` только в Vercel Environment Variables).
-3. После деплоя скопируйте URL вида `https://….vercel.app` в таблицу вверху README и в форму nFactorial.
-
 ## Схема БД
 
 Файл `supabase/schema.sql` — таблицы `users`, `game_sessions`, `daily_challenges`, `leaderboard` и политики RLS (под дальнейший Auth).
