@@ -1,6 +1,5 @@
 # MineMind
 
-| | |
 | **Живой проект** | https://nfactorial-minesweeper.vercel.app/
 
 ---
