@@ -1,4 +1,4 @@
-export type Difficulty = "easy" | "medium" | "hard";
+export type Difficulty = "beginner" | "easy" | "medium" | "hard";
 export type GameMode = "practice" | "daily";
 export type GameStatus = "playing" | "won" | "lost";
 

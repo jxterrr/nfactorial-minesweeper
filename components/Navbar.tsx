@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const links = [
+  { href: "/play?difficulty=beginner", label: "Новичок" },
   { href: "/play", label: "Play" },
   { href: "/play?mode=daily", label: "Daily" },
   { href: "/stats", label: "Stats" },

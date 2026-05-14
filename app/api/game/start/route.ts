@@ -17,7 +17,12 @@ export async function POST(req: Request) {
     body.seed ??
     randomUUID();
 
-  if (difficulty !== "easy" && difficulty !== "medium" && difficulty !== "hard") {
+  if (
+    difficulty !== "beginner" &&
+    difficulty !== "easy" &&
+    difficulty !== "medium" &&
+    difficulty !== "hard"
+  ) {
     return NextResponse.json({ error: "Invalid difficulty" }, { status: 400 });
   }
   if (mode !== "practice" && mode !== "daily") {

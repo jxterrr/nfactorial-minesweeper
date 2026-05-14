@@ -5,6 +5,8 @@ export const DIFFICULTY_CONFIG: Record<
   Difficulty,
   { rows: number; cols: number; mines: number }
 > = {
+  /** 9×9, few mines — чтобы быстро научиться побеждать */
+  beginner: { rows: 9, cols: 9, mines: 6 },
   easy: { rows: 9, cols: 9, mines: 10 },
   medium: { rows: 16, cols: 16, mines: 40 },
   hard: { rows: 16, cols: 30, mines: 99 },
