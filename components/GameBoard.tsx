@@ -25,7 +25,11 @@ function hasPlayerInteracted(s: GameState) {
 
 export function GameBoard({ mode, difficulty }: Props) {
   const [resetKey, setResetKey] = useState(0);
-  const [daily, setDaily] = useState<{ seed: string; date: string } | null>(null);
+  const [daily, setDaily] = useState<{
+    seed: string;
+    date: string;
+    difficulty: Difficulty;
+  } | null>(null);
   const [state, setState] = useState<GameState | null>(null);
   const [seconds, setSeconds] = useState(0);
   const victorySent = useRef(false);
@@ -44,9 +48,17 @@ export function GameBoard({ mode, difficulty }: Props) {
     let cancelled = false;
     (async () => {
       const res = await fetch("/api/daily-seed");
-      const data = (await res.json()) as { seed?: string; date?: string };
+      const data = (await res.json()) as {
+        seed?: string;
+        date?: string;
+        difficulty?: string;
+      };
       if (!cancelled && data.seed && data.date) {
-        setDaily({ seed: data.seed, date: data.date });
+        const d =
+          data.difficulty === "easy" || data.difficulty === "medium" || data.difficulty === "hard"
+            ? data.difficulty
+            : "medium";
+        setDaily({ seed: data.seed, date: data.date, difficulty: d });
       }
     })();
     return () => {
@@ -57,11 +69,12 @@ export function GameBoard({ mode, difficulty }: Props) {
   useEffect(() => {
     const seed = mode === "daily" ? daily?.seed : practiceSeed;
     if (!seed) return;
-    setState(createGame(difficulty, seed, mode));
+    const diff = mode === "daily" ? (daily?.difficulty ?? "medium") : difficulty;
+    setState(createGame(diff, seed, mode));
     victorySent.current = false;
     setSeconds(0);
     timerStart.current = null;
-  }, [mode, difficulty, daily?.seed, practiceSeed, resetKey]);
+  }, [mode, difficulty, daily?.seed, daily?.difficulty, practiceSeed, resetKey]);
 
   const activeTimer = Boolean(
     state && state.status === "playing" && hasPlayerInteracted(state),
