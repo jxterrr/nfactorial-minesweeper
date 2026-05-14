@@ -1,9 +1,7 @@
 # MineMind
 
 | | |
-|--|--|
 | **Живой проект** | https://nfactorial-minesweeper.vercel.app/
-| **Форма сдачи** | [nFactorial — отправка работы](https://nfactorialschool.typeform.com/to/HYVeKeEx) |
 
 ---
 
