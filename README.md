@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MineMind
 
-## Getting Started
+| | |
+|--|--|
+| **Живой проект** | _Вставьте сюда ссылку на Vercel после деплоя_ |
+| **Репозиторий** | _Вставьте сюда ссылку на GitHub_ |
+| **Форма сдачи** | [nFactorial — отправка работы](https://nfactorialschool.typeform.com/to/HYVeKeEx) |
 
-First, run the development server:
+---
+
+## Что это
+
+**MineMind** — веб-приложение на **Next.js 14** (App Router, TypeScript, Tailwind), которое совмещает классический **сапёр** с идеей **тренировки решений в условиях неопределённости**: не только «угадать клетку», а осмысленно работать с риском, паттернами и ежедневной общей доской.
+
+## Для кого
+
+- Для людей, которым нравится логика и короткие сессии «на одну партию».
+- Для тех, кто хочет **привычку** через **ежедневный челлендж** (одна и та же раскладка по UTC-дате для всех).
+- Для соревновательного настроя — **таблица лидеров** (время прохождения, город по заголовку `x-vercel-ip-city` при отправке результата).
+
+## Почему это ценно
+
+1. **Продукт, а не «страница с игрой»**: маршруты `/play`, `/play?mode=daily`, `/stats`, `/leaderboard`, API под сиды, сессии и очки, схема под **Supabase** — задел под настоящий сервис (авторизация, история партий, лимиты дня).
+2. **Честная архитектура**: движок сапёра вынесен в чистый TypeScript (`lib/gameEngine.ts`) — без смешивания с React-слоем, проще тестировать и развивать.
+3. **Осознанный компромисс по «монетизации»**: платные API (облачный «тренер» и подписки) из проекта **убраны** — остаётся **бесплатная подсказка** на стороне клиента (`lib/probability.ts` + блок «Hints»), чтобы продукт можно было **деплоить и показывать без бюджета** на ключи и биллинг.
+
+## Креатив / отличия от «идеального ТЗ»
+
+- Сфокусировался на **играбельности**, **daily seed** и **лидерборде** без обязательной оплаты и без внешних LLM.
+- Подсказки — **локальная эвристика** (грубая оценка «безопасности» случайной закрытой клетки), а не платной моделью — зато **0 ₽** на API.
+- Страница **Stats** оставлена как понятный **задел под аналитику** (запросы к `game_sessions` после подключения Auth).
+
+## Запуск локально
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Переменные окружения — из `.env.example` → скопируйте в `.env.local` (Supabase нужен для персистентного daily + leaderboard через API).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Деплой (чтобы получить ссылку для формы)
 
-## Learn More
+1. Залейте репозиторий на **GitHub**.
+2. Подключите репозиторий к **Vercel** → Import → те же env, что в `.env.local` для продакшена (без секретов в клиенте: `SUPABASE_SERVICE_ROLE_KEY` только в Vercel Environment Variables).
+3. После деплоя скопируйте URL вида `https://….vercel.app` в таблицу вверху README и в форму nFactorial.
 
-To learn more about Next.js, take a look at the following resources:
+## Схема БД
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Файл `supabase/schema.sql` — таблицы `users`, `game_sessions`, `daily_challenges`, `leaderboard` и политики RLS (под дальнейший Auth).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Стек
 
-## Deploy on Vercel
+Next.js 14 · TypeScript · Tailwind CSS · Supabase (PostgreSQL) · PWA manifest (`public/manifest.json`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+_Удачи на сдаче — заполните две ссылки в таблице сверху перед отправкой формы._
