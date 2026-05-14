@@ -2,8 +2,7 @@
 
 | | |
 |--|--|
-| **Живой проект** | _Вставьте сюда ссылку на Vercel после деплоя_ |
-| **Репозиторий** | _Вставьте сюда ссылку на GitHub_ |
+| **Живой проект** https://nfactorial-minesweeper.vercel.app/
 | **Форма сдачи** | [nFactorial — отправка работы](https://nfactorialschool.typeform.com/to/HYVeKeEx) |
 
 ---
@@ -55,6 +54,5 @@ npm run dev
 
 Next.js 14 · TypeScript · Tailwind CSS · Supabase (PostgreSQL) · PWA manifest (`public/manifest.json`).
 
----
 
-_Удачи на сдаче — заполните две ссылки в таблице сверху перед отправкой формы._
+Проект полностью сделан через Cursor
